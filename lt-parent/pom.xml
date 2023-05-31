@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>lt</groupId>
+    <artifactId>lt-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>lt-parent</name>
+    <description>lt微服务脚手架项目</description>
+    <packaging>pom</packaging>
+    <properties>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <lombok.version>1.18.20</lombok.version>
+        <mapstruct.version>1.4.1.Final</mapstruct.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <scm>
+        <connection>scm:git:http://git.devops.shoppingm.cn/scm/tmal/umall-parent.git</connection>
+        <developerConnection>scm:git:http://git.devops.shoppingm.cn/scm/tmal/umall-parent.git</developerConnection>
+        <url>http://git.devops.shoppingm.cn/projects/TMAL/repos/umall-parent/browse</url>
+        <tag>HEAD</tag>
+    </scm>
+    <build>
+        <plugins>
+            <!-- maven-surefire-plugin 插件，用于运行单元测试。 -->
+            <!-- 注意，需要使用 3.0.X+，因为要支持 Junit 5 版本 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+
+            </plugin>
+            <!-- maven-compiler-plugin 插件，解决 Lombok + MapStruct 组合 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>lt</groupId>
+                <artifactId>lt-dependencies</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <repositories>
+        <repository>
+            <releases />
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>nexus-releases</id>
+            <name>Releases Repository</name>
+            <url>http://nexus.devops.shoppingm.cn/content/groups/public</url>
+        </repository>
+        <repository>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots />
+            <id>neuxs-snapshots</id>
+            <name>Snapshots Repository</name>
+            <url>http://nexus.devops.shoppingm.cn/content/groups/public</url>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>internal releases</name>
+            <url>http://nexus.devops.shoppingm.cn/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>internal snapshots</name>
+            <url>http://nexus.devops.shoppingm.cn/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

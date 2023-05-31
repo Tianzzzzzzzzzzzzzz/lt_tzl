@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="target">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/t-lt-cms/t-lt-cms-api/target/t-umall-system-api-0.0.1-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/t-lt-cms/t-lt-cms-api/target/t-umall-system-api-1.0.1-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/t-lt-cms/t-lt-cms-api/target/t-lt-cms-api-1.0.1-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/t-lt-cms/t-lt-cms-api/target/t-umall-system-api-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

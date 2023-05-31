@@ -1,0 +1,19 @@
+spring:
+  main:
+    allow-circular-references: true # 允许循环依赖，因为项目是三层架构，无法避免这个情况。
+    allow-bean-definition-overriding: true # 允许 Bean 覆盖，例如说 Dubbo 或者 Feign 等会存在重复定义的服务
+
+  cloud:
+    # Spring Cloud Gateway 配置项，对应 GatewayProperties 类
+    gateway:
+      # 路由配置项，对应 RouteDefinition 数组
+      routes:
+        - id: test-api # 路由的编号
+          uri: grayLb://nacos-config-client
+          predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
+            - Path=/abc/**
+
+        - id: cms-api # 路由的编号
+          uri: grayLb://cms-server-tzl
+          predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
+            - Path=/cms/**

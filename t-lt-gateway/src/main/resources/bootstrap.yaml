@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: gateway-server-tzl
+
+  profiles:
+    active: local
+
+server:
+  port: 48070
+
+# 日志文件配置。注意，如果 logging.file.name 不放在 bootstrap.yaml 配置文件，而是放在 application.yaml 中，会导致出现 LOG_FILE_IS_UNDEFINED 文件
+logging:
+  pattern:
+    file: "%d{yyyy/MM/dd HH:mm:ss} [%thread] %-5level %logger:%L - %msg%n "
+  level:
+    root: info
+  file:
+    name: /data/log/t-lt-gateway/stdout.log
+  logback:
+    rollingpolicy:
+      max-history: 60
+      max-file-size: 1GB

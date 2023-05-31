@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  service.lt.redis.config.YudaoRedisAutoConfiguration,\
+  service.lt.redis.config.YudaoCacheAutoConfiguration

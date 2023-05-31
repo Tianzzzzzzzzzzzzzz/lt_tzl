@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/cms/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cms/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lt-parent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lt-parent/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider1/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-lt-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-lt-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-lt-mybatisplus-join/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-lt-mybatisplus-join/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-lt-mybatisplus/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-lt-mybatisplus/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-lt-redis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-lt-redis/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-lt-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-lt-web/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-cms/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-cms/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-cms/t-lt-cms-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-cms/t-lt-cms-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-cms/t-lt-cms-biz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-cms/t-lt-cms-biz/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-file/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-file/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-file/t-lt-file-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-file/t-lt-file-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-file/t-lt-file-biz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-file/t-lt-file-biz/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-home/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-home/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-home/t-lt-home-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-home/t-lt-home-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-home/t-lt-home-biz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-home/t-lt-home-biz/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-job/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-job/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-user/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-user/t-lt-user-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-user/t-lt-user-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-user/t-lt-user-biz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/t-lt-user/t-lt-user-biz/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

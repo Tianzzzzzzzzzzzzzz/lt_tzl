@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  service.lt.datasource.config.YudaoDataSourceAutoConfiguration,\
+  service.lt.mybatis.config.YudaoMybatisAutoConfiguration
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  service.lt.mybatis.config.IdTypeEnvironmentPostProcessor

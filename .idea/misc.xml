@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/demo" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/provider1/pom.xml" />
+        <option value="$PROJECT_DIR$/provider2/pom.xml" />
+        <option value="$PROJECT_DIR$/consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/lt-dependencies/pom.xml" />
+        <option value="$PROJECT_DIR$/lt-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/cms/pom.xml" />
+        <option value="$PROJECT_DIR$/t-lt-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/service-lt-common/pom.xml" />
+        <option value="$PROJECT_DIR$/t-lt-cms/pom.xml" />
+        <option value="$PROJECT_DIR$/t-lt-cms/t-lt-cms-api/pom.xml" />
+        <option value="$PROJECT_DIR$/t-lt-home/pom.xml" />
+        <option value="$PROJECT_DIR$/t-lt-user/pom.xml" />
+        <option value="$PROJECT_DIR$/t-lt-file/pom.xml" />
+        <option value="$PROJECT_DIR$/t-lt-job/pom.xml" />
+        <option value="$PROJECT_DIR$/service-lt-mybatisplus-join/pom.xml" />
+        <option value="$PROJECT_DIR$/service-lt-mybatisplus/pom.xml" />
+        <option value="$PROJECT_DIR$/service-lt-web/pom.xml" />
+        <option value="$PROJECT_DIR$/service-lt-redis/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/cms/pom.xml" />
+        <option value="$PROJECT_DIR$/service-lt-web/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
