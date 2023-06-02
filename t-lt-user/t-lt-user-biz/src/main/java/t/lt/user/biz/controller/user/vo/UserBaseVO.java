@@ -20,31 +20,23 @@ public class UserBaseVO {
     @Size(max = 10, message = "用户姓名长度不能超过10个字符")
     private String nickName;
 
-    @ApiModelProperty(value = "父菜单 ID", example = "1024")
-    private Long parentId;
+    @ApiModelProperty(value = "机构 ID", example = "1024")
+    @NotNull(message = "机构不能为空")
+    private Long deptId;
 
-    @ApiModelProperty(value = "显示顺序不能为空", required = true, example = "1024")
-    @NotNull(message = "显示顺序不能为空")
-    private Integer sort;
-
-    @ApiModelProperty(value = "负责人的用户编号", example = "2048")
-    private Long leaderUserId;
-
-    @ApiModelProperty(value = "联系电话", example = "15601691000")
-    @Size(max = 11, message = "联系电话长度不能超过11个字符")
-    private String phone;
-
-    @ApiModelProperty(value = "邮箱", example = "yudao@iocoder.cn")
-    @Email(message = "邮箱格式不正确")
-    @Size(max = 50, message = "邮箱长度不能超过50个字符")
-    private String email;
+    @ApiModelProperty(value = "机构 ID", example = "1024")
+    @NotNull(message = "角色不能为空")
+    private Long roleId;
+    @ApiModelProperty(value = "账号", required = true, example = "芋道")
+    @NotBlank(message = "账号不能为空")
+    @Size(max = 10, message = "账号长度不能超过10个字符")
+    private String userName;
 
     @ApiModelProperty(value = "状态", required = true, example = "1", notes = "见 CommonStatusEnum 枚举")
-    @NotNull(message = "状态不能为空")
+   // @NotNull(message = "状态不能为空")
 //    @InEnum(value = CommonStatusEnum.class, message = "修改状态必须是 {value}")
     private Integer status;
 
-    @ApiModelProperty(value = "商场id", example = "2048")
-    private Long mallId;
+
 
 }

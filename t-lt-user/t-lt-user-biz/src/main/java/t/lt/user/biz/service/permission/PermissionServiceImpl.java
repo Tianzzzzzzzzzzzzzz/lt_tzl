@@ -392,26 +392,6 @@ public class PermissionServiceImpl implements PermissionService {
         });
     }
 
-    @Override
-    public boolean hasAnyRoles(Long userId, String... roles) {
-        // 如果为空，说明已经有权限
-        if (ArrayUtil.isEmpty(roles)) {
-            return true;
-        }
-
-        // 获得当前登录的角色。如果为空，说明没有权限
-        Set<Long> roleIds = getUserRoleIdsFromCache(userId, singleton(CommonStatusEnum.ENABLE.getStatus()));
-        if (CollUtil.isEmpty(roleIds)) {
-            return false;
-        }
-        // 判断是否是超管。如果是，当然符合条件
-        if (roleService.hasAnySuperAdmin(roleIds)) {
-            return true;
-        }
-        Set<String> userRoles = convertSet(roleService.getRolesFromCache(roleIds),
-                RoleDO::getCode);
-        return CollUtil.containsAny(userRoles, Sets.newHashSet(roles));
-    }
 
 
 

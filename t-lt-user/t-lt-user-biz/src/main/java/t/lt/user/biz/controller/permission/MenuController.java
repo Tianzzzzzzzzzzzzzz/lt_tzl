@@ -24,7 +24,7 @@ import static service.lt.common.pojo.CommonResult.success;
 
 @Api(tags = "管理后台 - 菜单")
 @RestController
-@RequestMapping("/system/menu")
+@RequestMapping("/menu")
 @Validated
 public class MenuController {
 

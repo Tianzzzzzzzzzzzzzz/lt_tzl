@@ -36,7 +36,7 @@ public class AdminUserDO extends BaseDO {
     /**
      * 用户账号
      */
-    private String username;
+    private String userName;
     /**
      * 加密后的密码
      *
@@ -46,38 +46,19 @@ public class AdminUserDO extends BaseDO {
     /**
      * 用户昵称
      */
-    private String nickname;
+    private String nickName;
     /**
-     * 备注
+     * 角色ID
      */
-    private String remark;
-
-    /**
-     * 用户邮箱
-     */
-    private String email;
-    /**
-     * 手机号码
-     */
-    private String mobile;
-    /**
-     * 用户性别
-     *
-     * 枚举类 {@link SexEnum}
-     */
-    private Integer sex;
+    private Long roleId;
     /**
      * 部门ID
      */
     private Long deptId;
-    /**
-     * 用户头像
-     */
-    private String avatar;
+
     /**
      * 帐号状态
      *
-     * 枚举 {@link CommonStatusEnum}
      */
     private Integer status;
     /**

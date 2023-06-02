@@ -3,10 +3,7 @@ package t.lt.user.biz.convert.dept;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import t.lt.user.biz.controller.dept.vo.DeptCreateReqVO;
-import t.lt.user.biz.controller.dept.vo.DeptRespVO;
-import t.lt.user.biz.controller.dept.vo.DeptSimpleRespVO;
-import t.lt.user.biz.controller.dept.vo.DeptUpdateReqVO;
+import t.lt.user.biz.controller.dept.vo.*;
 import t.lt.user.biz.dal.dataobject.dept.DeptDO;
 
 
@@ -28,5 +25,6 @@ public interface DeptConvert {
     DeptDO convert(DeptUpdateReqVO bean);
 
 
+    List<DeptTreeRespVO> convert(List<DeptDO> list);
 
 }

@@ -1,6 +1,7 @@
 package t.lt.user.biz.service.user;
 
 import cn.hutool.core.collection.CollUtil;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.lt.common.pojo.PageResult;
 import service.lt.common.util.collection.CollectionUtils;
 import t.lt.user.biz.controller.user.vo.*;
@@ -40,13 +41,7 @@ public interface UserService {
      */
     void updateUserLogin(Long id, String loginIp);
 
-    /**
-     * 修改用户个人信息
-     *
-     * @param id 用户编号
-     * @param reqVO 用户个人信息
-     */
-    void updateUserProfile(Long id, @Valid UserProfileUpdateReqVO reqVO);
+
 
     /**
      * 修改用户个人密码
@@ -88,13 +83,6 @@ public interface UserService {
      */
     AdminUserDO getUserByUsername(String username);
 
-    /**
-     * 通过手机号获取用户
-     *
-     * @param mobile 手机号
-     * @return 用户对象信息
-     */
-    AdminUserDO getUserByMobile(String mobile);
 
     /**
      * 获得用户分页列表
@@ -188,4 +176,10 @@ public interface UserService {
      * @return 用户们
      */
     List<UserListRespVO> getUserList(String nickName);
+
+
+    void enableUser( Long id);
+    void unableUser( Long id);
+
+
 }

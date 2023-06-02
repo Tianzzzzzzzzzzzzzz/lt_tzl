@@ -4,7 +4,9 @@ import org.apache.ibatis.annotations.Select;
 import service.lt.common.pojo.PageResult;
 import service.lt.mybatis.core.mapper.BaseMapperX;
 import service.lt.mybatis.core.query.LambdaQueryWrapperX;
+import t.lt.user.biz.controller.dept.vo.DeptListReqVO;
 import t.lt.user.biz.controller.oauth2.vo.client.OAuth2ClientPageReqVO;
+import t.lt.user.biz.dal.dataobject.dept.DeptDO;
 import t.lt.user.biz.dal.dataobject.oauth2.OAuth2ClientDO;
 
 

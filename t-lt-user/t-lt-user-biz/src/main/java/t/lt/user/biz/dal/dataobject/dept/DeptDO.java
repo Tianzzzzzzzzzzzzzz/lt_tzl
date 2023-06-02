@@ -32,35 +32,18 @@ public class DeptDO extends BaseDO {
      */
     @TableId
     private Long id;
-    private Long mallId;
+
     /**
      * 部门名称
      */
-    private String name;
+    private String deptName;
     /**
      * 父部门ID
      *
      * 关联 {@link #id}
      */
-    private Long parentId;
-    /**
-     * 显示顺序
-     */
-    private Integer sort;
-    /**
-     * 负责人
-     *
-     * 关联 {@link AdminUserDO#getId()}
-     */
-    private Long leaderUserId;
-    /**
-     * 联系电话
-     */
-    private String phone;
-    /**
-     * 邮箱
-     */
-    private String email;
+    private Long pid;
+
     /**
      * 部门状态
      *

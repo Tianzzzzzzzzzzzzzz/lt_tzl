@@ -20,7 +20,7 @@ public interface RoleMapper extends BaseMapperX<RoleDO> {
 
 
     default RoleDO selectByName(String name) {
-        return selectOne(RoleDO::getName, name);
+        return selectOne(RoleDO::getRoleName, name);
     }
 
     default RoleDO selectByCode(String code) {
@@ -35,7 +35,7 @@ public interface RoleMapper extends BaseMapperX<RoleDO> {
     Long selectCountByUpdateTimeGt(Date maxUpdateTime);
     default PageResult<RoleDO> selectPage(RolePageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<RoleDO>()
-                .likeIfPresent(RoleDO::getName, reqVO.getName())
+                .likeIfPresent(RoleDO::getRoleName, reqVO.getName())
                 .likeIfPresent(RoleDO::getCode, reqVO.getCode())
                 .eqIfPresent(RoleDO::getStatus, reqVO.getStatus())
                 .betweenIfPresent(BaseDO::getCreateTime, reqVO.getCreateTime())

@@ -24,6 +24,7 @@ import t.lt.user.biz.controller.permission.vo.role.RoleCreateReqVO;
 import t.lt.user.biz.controller.permission.vo.role.RolePageReqVO;
 import t.lt.user.biz.controller.permission.vo.role.RoleUpdateReqVO;
 import t.lt.user.biz.convert.permission.RoleConvert;
+import t.lt.user.biz.dal.dataobject.dept.DeptDO;
 import t.lt.user.biz.dal.dataobject.permission.RoleDO;
 import t.lt.user.biz.dal.mysql.permission.RoleMapper;
 
@@ -130,18 +131,11 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional
-    public Long createRole(RoleCreateReqVO reqVO, Integer type) {
-        // 校验角色
-        checkDuplicateRole(reqVO.getName(), reqVO.getCode(), null);
+    public Long createRole(RoleCreateReqVO reqVO) {
         // 插入到数据库
         RoleDO role = RoleConvert.INSTANCE.convert(reqVO);
-        role.setType(ObjectUtil.defaultIfNull(type, RoleTypeEnum.CUSTOM.getType()));
         role.setStatus(CommonStatusEnum.ENABLE.getStatus());
-        role.setDataScope(DataScopeEnum.ALL.getScope()); // 默认可查看所有数据。原因是，可能一些项目不需要项目权限
         roleMapper.insert(role);
-
-
-
         // 返回
         return role.getId();
     }
@@ -150,9 +144,6 @@ public class RoleServiceImpl implements RoleService {
     public void updateRole(RoleUpdateReqVO reqVO) {
         // 校验是否可以更新
         checkUpdateRole(reqVO.getId());
-        // 校验角色的唯一字段是否重复
-        checkDuplicateRole(reqVO.getName(), reqVO.getCode(), reqVO.getId());
-
         // 更新到数据库
         RoleDO updateObject = RoleConvert.INSTANCE.convert(reqVO);
         roleMapper.updateById(updateObject);
@@ -178,7 +169,6 @@ public class RoleServiceImpl implements RoleService {
         // 更新数据范围
         RoleDO updateObject = new RoleDO();
         updateObject.setId(id);
-        updateObject.setDataScope(dataScope);
         roleMapper.updateById(updateObject);
 
     }
@@ -222,7 +212,7 @@ public class RoleServiceImpl implements RoleService {
         if (CollectionUtil.isEmpty(roleList)) {
             return false;
         }
-        return roleList.stream().anyMatch(role -> RoleCodeEnum.isSuperAdmin(role.getCode()));
+        return roleList.stream().anyMatch(role -> RoleCodeEnum.isSuperAdmin(role.getRoleName()));
     }
 
     @Override
@@ -236,37 +226,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
 
-    /**
-     * 校验角色的唯一字段是否重复
-     *
-     * 1. 是否存在相同名字的角色
-     * 2. 是否存在相同编码的角色
-     *
-     * @param name 角色名字
-     * @param code 角色额编码
-     * @param id 角色编号
-     */
-    @VisibleForTesting
-    public void checkDuplicateRole(String name, String code, Long id) {
-        // 0. 超级管理员，不允许创建
-        if (RoleCodeEnum.isSuperAdmin(code)) {
-            throw exception(ROLE_ADMIN_CODE_ERROR, code);
-        }
-        // 1. 该 name 名字被其它角色所使用
-        RoleDO role = roleMapper.selectByName(name);
-        if (role != null && !role.getId().equals(id)) {
-            throw exception(ROLE_NAME_DUPLICATE, name);
-        }
-        // 2. 是否存在相同编码的角色
-        if (!StringUtils.hasText(code)) {
-            return;
-        }
-        // 该 code 编码被其它角色所使用
-        role = roleMapper.selectByCode(code);
-        if (role != null && !role.getId().equals(id)) {
-            throw exception(ROLE_CODE_DUPLICATE, code);
-        }
-    }
+
 
     /**
      * 校验角色是否可以被更新
@@ -278,10 +238,6 @@ public class RoleServiceImpl implements RoleService {
         RoleDO roleDO = roleMapper.selectById(id);
         if (roleDO == null) {
             throw exception(ROLE_NOT_EXISTS);
-        }
-        // 内置角色，不允许删除
-        if (RoleTypeEnum.SYSTEM.getType().equals(roleDO.getType())) {
-            throw exception(ROLE_CAN_NOT_UPDATE_SYSTEM_TYPE_ROLE);
         }
     }
 
@@ -300,8 +256,16 @@ public class RoleServiceImpl implements RoleService {
                 throw exception(ROLE_NOT_EXISTS);
             }
             if (!CommonStatusEnum.ENABLE.getStatus().equals(role.getStatus())) {
-                throw exception(ROLE_IS_DISABLE, role.getName());
+                throw exception(ROLE_IS_DISABLE, role.getRoleName());
             }
         });
     }
+
+    @Override
+    public List<RoleDO> getSimpleRoles(Collection<Long> ids) {
+        return roleMapper.selectBatchIds(ids);
+    }
+
+
+
 }

@@ -28,7 +28,7 @@ import static service.lt.common.pojo.CommonResult.success;
  */
 @Api(tags = "管理后台 - 权限")
 @RestController
-@RequestMapping("/system/permission")
+@RequestMapping("/permission")
 public class PermissionController {
 
     @Resource

@@ -61,8 +61,6 @@ public class UserServiceImpl implements UserService {
     @Transactional(rollbackFor = Exception.class)
     public Long createUser(UserCreateReqVO reqVO) {
 
-        // 校验正确性
-
         // 插入用户
         AdminUserDO user = UserConvert.INSTANCE.convert(reqVO);
         user.setStatus(CommonStatusEnum.ENABLE.getStatus()); // 默认开启
@@ -75,10 +73,10 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateUser(UserUpdateReqVO reqVO) {
-        // 校验正确性
-
         // 更新用户
         AdminUserDO updateObj = UserConvert.INSTANCE.convert(reqVO);
+        updateObj.setStatus(CommonStatusEnum.ENABLE.getStatus()); // 默认开启
+        updateObj.setPassword(passwordEncoder.encode(reqVO.getPassword())); // 加密密码
         userMapper.updateById(updateObj);
     }
 
@@ -88,15 +86,7 @@ public class UserServiceImpl implements UserService {
         userMapper.updateById(new AdminUserDO().setId(id).setLoginIp(loginIp).setLoginDate(new Date()));
     }
 
-    @Override
-    public void updateUserProfile(Long id, UserProfileUpdateReqVO reqVO) {
-        // 校验正确性
-        checkUserExists(id);
-        checkEmailUnique(id, reqVO.getEmail());
-        checkMobileUnique(id, reqVO.getMobile());
-        // 执行更新
-        userMapper.updateById(UserConvert.INSTANCE.convert(reqVO).setId(id));
-    }
+
 
     @Override
     public void updateUserPassword(Long id, UserProfileUpdatePasswordReqVO reqVO) {
@@ -148,10 +138,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectByUsername(username);
     }
 
-    @Override
-    public AdminUserDO getUserByMobile(String mobile) {
-        return userMapper.selectByMobile(mobile);
-    }
+
 
     @Override
     public PageResult<AdminUserDO> getUserPage(UserPageReqVO reqVO) {
@@ -190,7 +177,7 @@ public class UserServiceImpl implements UserService {
                 throw exception(USER_NOT_EXISTS);
             }
             if (!CommonStatusEnum.ENABLE.getStatus().equals(user.getStatus())) {
-                throw exception(USER_IS_DISABLE, user.getNickname());
+                throw exception(USER_IS_DISABLE, user.getNickName());
             }
         });
     }
@@ -240,41 +227,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @VisibleForTesting
-    public void checkEmailUnique(Long id, String email) {
-        if (StrUtil.isBlank(email)) {
-            return;
-        }
-        AdminUserDO user = userMapper.selectByEmail(email);
-        if (user == null) {
-            return;
-        }
-        // 如果 id 为空，说明不用比较是否为相同 id 的用户
-        if (id == null) {
-            throw exception(USER_EMAIL_EXISTS);
-        }
-        if (!user.getId().equals(id)) {
-            throw exception(USER_EMAIL_EXISTS);
-        }
-    }
 
-    @VisibleForTesting
-    public void checkMobileUnique(Long id, String mobile) {
-        if (StrUtil.isBlank(mobile)) {
-            return;
-        }
-        AdminUserDO user = userMapper.selectByMobile(mobile);
-        if (user == null) {
-            return;
-        }
-        // 如果 id 为空，说明不用比较是否为相同 id 的用户
-        if (id == null) {
-            throw exception(USER_MOBILE_EXISTS);
-        }
-        if (!user.getId().equals(id)) {
-            throw exception(USER_MOBILE_EXISTS);
-        }
-    }
+
+
 
     /**
      * 校验旧密码
@@ -319,12 +274,29 @@ public class UserServiceImpl implements UserService {
                 QueryWrapperX<RoleDO> wrapper = new QueryWrapperX<>();
                 wrapper.inIfPresent("id", roleIdSet);
                 List<RoleDO> role = roleMapper.selectList(wrapper);
-                roleName = role.stream().map(RoleDO::getName).collect(Collectors.joining(","));
+                roleName = role.stream().map(RoleDO::getRoleName).collect(Collectors.joining(","));
             }
             user.setUserRoleName(roleName);
         }
 
         return userList;
+    }
+
+    @Override
+    public void enableUser(Long id) {
+        AdminUserDO userDO=new AdminUserDO();
+        userDO.setId(id);
+        userDO.setStatus(0);
+        userMapper.updateById(userDO);
+
+    }
+
+    @Override
+    public void unableUser(Long id) {
+        AdminUserDO userDO=new AdminUserDO();
+        userDO.setId(id);
+        userDO.setStatus(1);
+        userMapper.updateById(userDO);
     }
 
     /**

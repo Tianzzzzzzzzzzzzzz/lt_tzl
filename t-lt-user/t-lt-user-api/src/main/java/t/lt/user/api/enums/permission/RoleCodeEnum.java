@@ -23,8 +23,10 @@ public enum RoleCodeEnum {
      */
     private final String name;
 
-    public static boolean isSuperAdmin(String code) {
+  /*  public static boolean isSuperAdmin(String code) {
         return ObjectUtils.equalsAny(code, SUPER_ADMIN.getCode());
-    }
-
+    }*/
+  public static boolean isSuperAdmin(String name) {
+      return ObjectUtils.equalsAny(name, SUPER_ADMIN.getName());
+  }
 }

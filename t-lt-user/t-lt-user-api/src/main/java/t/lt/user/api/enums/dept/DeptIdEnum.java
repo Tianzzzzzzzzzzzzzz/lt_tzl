@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 部门编号枚举
+ * 机构编号枚举
  */
 @Getter
 @AllArgsConstructor

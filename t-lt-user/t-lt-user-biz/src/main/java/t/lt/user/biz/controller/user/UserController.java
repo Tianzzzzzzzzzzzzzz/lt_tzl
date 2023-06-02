@@ -17,8 +17,10 @@ import t.lt.user.biz.controller.user.vo.UserPageReqVO;
 import t.lt.user.biz.controller.user.vo.UserUpdateReqVO;
 import t.lt.user.biz.convert.user.UserConvert;
 import t.lt.user.biz.dal.dataobject.dept.DeptDO;
+import t.lt.user.biz.dal.dataobject.permission.RoleDO;
 import t.lt.user.biz.dal.dataobject.user.AdminUserDO;
 import t.lt.user.biz.service.dept.DeptService;
+import t.lt.user.biz.service.permission.RoleService;
 import t.lt.user.biz.service.user.UserService;
 
 import javax.annotation.Resource;
@@ -42,7 +44,8 @@ public class UserController {
 
     @Resource
     private DeptService deptService;
-
+    @Resource
+    private RoleService roleService;
     @GetMapping("/test")
     @ResponseBody
     public String test(){
@@ -84,19 +87,37 @@ public class UserController {
         if (CollUtil.isEmpty(pageResult.getList())) {
             return success(new PageResult<>(pageResult.getTotal())); // 返回空
         }
-
         // 获得拼接需要的数据
         Collection<Long> deptIds = convertList(pageResult.getList(), AdminUserDO::getDeptId);
         Map<Long, DeptDO> deptMap = deptService.getDeptMap(deptIds);
+        Collection<Long> roleIds = convertList(pageResult.getList(), AdminUserDO::getRoleId);
+        Map<Long, RoleDO> roleMap = roleService.getRoleMap(roleIds);
         // 拼接结果返回
         List<UserPageItemRespVO> userList = new ArrayList<>(pageResult.getList().size());
         pageResult.getList().forEach(user -> {
             UserPageItemRespVO respVO = UserConvert.INSTANCE.convert(user);
-            respVO.setDept(UserConvert.INSTANCE.convert(deptMap.get(user.getDeptId())));
+            respVO.setDeptNname(deptMap.get(user.getDeptId()).getDeptName());
+            respVO.setRoleName(roleMap.get(user.getRoleId()).getRoleName());
             userList.add(respVO);
         });
         return success(new PageResult<>(userList, pageResult.getTotal()));
     }
+    @DeleteMapping("/unable")
+    @ApiOperation("禁用用户")
+    @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = Long.class)
+    @PreAuthorize("@ss.hasPermission('system:user:unable')")
+    public CommonResult<Boolean> unableUser(@RequestParam("id") Long id) {
+        userService.unableUser(id);
+        return success(true);
+    }
 
+    @DeleteMapping("/enable")
+    @ApiOperation("启用用户")
+    @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = Long.class)
+    @PreAuthorize("@ss.hasPermission('system:user:enable')")
+    public CommonResult<Boolean> enableUser(@RequestParam("id") Long id) {
+        userService.enableUser(id);
+        return success(true);
+    }
 
 }

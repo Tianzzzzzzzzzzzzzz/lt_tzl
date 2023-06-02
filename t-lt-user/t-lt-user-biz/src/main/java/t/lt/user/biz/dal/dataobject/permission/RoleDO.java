@@ -31,40 +31,23 @@ public class RoleDO   extends BaseDO {
     /**
      * 角色名称
      */
-    private String name;
+    private String roleName;
     /**
      * 角色标识
      *
-     * 枚举
      */
-    private String code;
+    private String describe;
     /**
-     * 角色排序
+     * 菜单id数组
      */
-    private Integer sort;
+    private Long[] menuIds;
     /**
      * 角色状态
      *
      * 枚举 {@link CommonStatusEnum}
      */
     private Integer status;
-    /**
-     * 角色类型
-     *
-     * 枚举 {@link }
-     */
-    private Integer type;
-    /**
-     * 备注
-     */
-    private String remark;
 
-    /**
-     * 数据范围
-     *
-     * 枚举 {@link }
-     */
-    private Integer dataScope;
 
 
 }

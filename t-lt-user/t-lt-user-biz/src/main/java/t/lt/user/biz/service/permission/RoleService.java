@@ -1,18 +1,19 @@
 package t.lt.user.biz.service.permission;
 
 
+import cn.hutool.core.collection.CollUtil;
 import org.springframework.lang.Nullable;
 import service.lt.common.pojo.PageResult;
+import service.lt.common.util.collection.CollectionUtils;
 import t.lt.user.biz.controller.permission.vo.role.RoleCreateReqVO;
 import t.lt.user.biz.controller.permission.vo.role.RolePageReqVO;
 import t.lt.user.biz.controller.permission.vo.role.RoleUpdateReqVO;
+import t.lt.user.biz.dal.dataobject.dept.DeptDO;
 import t.lt.user.biz.dal.dataobject.permission.RoleDO;
 
 
 import javax.validation.Valid;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 角色 Service 接口
@@ -30,10 +31,9 @@ public interface RoleService {
      * 创建角色
      *
      * @param reqVO 创建角色信息
-     * @param type 角色类型
      * @return 角色编号
      */
-    Long createRole(@Valid RoleCreateReqVO reqVO, Integer type);
+    Long createRole(@Valid RoleCreateReqVO reqVO);
 
     /**
      * 更新角色
@@ -134,5 +134,27 @@ public interface RoleService {
      * @param ids 角色编号数组
      */
     void validRoles(Collection<Long> ids);
+    /**
+     * 获得指定编号的角色 Map
+     *
+     * @param ids 部门编号数组
+     * @return 部门 Map
+     */
+    default Map<Long, RoleDO> getRoleMap(Collection<Long> ids) {
+        if (CollUtil.isEmpty(ids)) {
+            return Collections.emptyMap();
+        }
+        List<RoleDO> list = getSimpleRoles(ids);
+        return CollectionUtils.convertMap(list, RoleDO::getId);
+    }
 
+
+
+    /**
+     * 获得指定编号的角色列表
+     *
+     * @param ids 角色编号数组
+     * @return 角色列表
+     */
+    List<RoleDO> getSimpleRoles(Collection<Long> ids);
 }
